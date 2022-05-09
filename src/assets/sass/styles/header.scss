@@ -1,0 +1,43 @@
+.header {
+    height: 65px;
+    background-color: #8dd7cf;
+
+    img {
+        object-fit: contain;
+        cursor: pointer;
+        width: 70px;
+    }
+
+    .input-search {
+        position: relative;
+        
+        i {
+            position: absolute;
+            right: 30px;
+            top: 17px;
+            color: #4b5c6b;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    }
+
+    i {
+        font-size: 25px;
+        color: white;
+        cursor: pointer;
+    }
+
+    .cart {
+        position: relative;
+
+        .qtd-cart {
+            position: absolute;
+            top: 5px;
+            right: 0px;
+            border-radius: 100%;
+            background-color: #fbe192;
+            height: 25px;
+            width: 25px;
+        }
+    }
+}

@@ -1,0 +1,41 @@
+.card-container {
+    .border-card {
+        border: 2px solid #aebbc7;
+    }
+    .img-card {
+        position: relative;
+        height: 270px;
+        background-color: #dfe6ed;
+        border-bottom: 2px solid #aebbc7;
+        
+        i {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: #4b5c6b;
+        }
+        img {
+            object-fit: contain;
+        }
+        p {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            bottom: 0px;
+            
+        }        
+    }
+
+    .info-card {
+        b {
+            font-size: 13pt;
+        }
+        p {
+            font-size: 11pt;
+        }
+        i {
+            color: #4b5c6b;
+        }
+    }
+}
