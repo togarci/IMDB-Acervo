@@ -1,7 +1,7 @@
 <template>
 	<header class="d-flex justify-content-between col-md-12 pl-5 pr-5 header">
 		<div class="row ml-2 align-items-center">
-			<img src="@/assets/logo.png">
+			<img src="@/assets/logo.png" @click="$router.push({ path: '/' })">
 		</div>
 		<div class="col-md-8 row align-items-center justify-content-center">
 			<div class="input-search col-md-7">

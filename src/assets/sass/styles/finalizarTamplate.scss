@@ -1,0 +1,28 @@
+.container-finalizar {
+    height: calc(100vh - 65px);
+
+    table {
+        .line {
+            height: 85px;
+        }
+        .line:not(:nth-child(2)) {
+            border-top: 2px solid #9eadba;
+        }
+        img {
+            height: 60px;
+            width: 70px;
+            border: 1px solid gray;
+        }
+        p {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            font-size: 11pt;
+        }
+        i {
+            color: #4b5c6b;
+            cursor: pointer;
+        }
+    }
+}
