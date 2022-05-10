@@ -21,7 +21,7 @@
 			</div>
 			<div class="cart d-flex h-100 align-items-center col-md-5">
 				<i class="fa-solid fa-cart-shopping" @click="openCart"></i>
-				<div class="qtd-cart row align-items-center justify-content-center">{{ qtde }}</div>
+				<div class="qtd-cart row align-items-center justify-content-center">{{ dataItems.length }}</div>
 			</div>
 		</div>
 	</header>
@@ -34,12 +34,11 @@ export default {
 	name: 'nav-header',
 	data() {
 		return {
-			searchValue: null,
-			qtde: 3
+			searchValue: null
 		}
 	},
 	computed: {
-		...mapState('cartDados', ['showSideBar'])
+		...mapState('cartDados', ['showSideBar', 'dataItems'])
 	},
 	methods: {
 		getSearchMovie() {

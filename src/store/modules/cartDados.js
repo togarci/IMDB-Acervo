@@ -2,7 +2,19 @@
 const cartDadosState = () => {
 	return {
 		typeSideBar: null,
-		showSideBar: false
+		showSideBar: false,
+		dataItems: [
+			{
+				img: null,
+				nomeFilme: 'Nome do Filme',
+				preco: '9.99'
+			},
+			{
+				img: null,
+				nomeFilme: 'Nome do Filme',
+				preco: '9.99'
+			}
+		]
 	}
 }
 
@@ -19,6 +31,9 @@ export default {
 		},
 		setShowSideBar(state, payload) {
 			state.showSideBar = payload;
+		},
+		setDataItems(state, payload) {
+			state.dataItems = payload;
 		}
 	},
 	actions: {

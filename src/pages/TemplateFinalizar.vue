@@ -28,20 +28,13 @@
 							<th class="col-md-1">Qtd</th>
 							<th class="col-md-2">Preço</th>
 						</tr>
-						<tr class="line">
+						<tr class="line" v-for="(dado, index) in dataFinalizar" :key="index">
 							<td class="col-md-2 pl-0"><img src="" alt=""></td>
-							<td class="col-md-5"><p>Nome do Filme</p></td>
-							<td class="col-md-1"><p>1</p></td>
-							<td class="col-md-3"><p>R$: 9,99</p></td>
-							<td class="col-md-1 pr-0"><i class="fa-solid fa-trash"></i></td>
-						</tr>
-						<tr class="line">
-							<td class="col-md-2 pl-0"><img src="" alt=""></td>
-							<td class="col-md-5"><p>Nome do Filme</p></td>
-							<td class="col-md-1"><p>1</p></td>
-							<td class="col-md-3"><p>R$: 9,99</p></td>
-							<td class="col-md-auto pr-0"><i class="fa-solid fa-trash"></i></td>
-						</tr>
+							<td class="col-md-5"><p>{{ dado.nome }}</p></td>
+							<td class="col-md-1"><p>{{ dado.qtd }}</p></td>
+							<td class="col-md-3"><p>{{ `R$: ${dado.preco}` }}</p></td>
+							<td class="col-md-1 pr-0"><i @click="deleteDataFinalizar(index)" class="fa-solid fa-trash"></i></td>
+						</tr>						
 					</table>
 					<div>
 						<div class="d-flex mb-3 mt-5 justify-content-between align-items-center">
@@ -74,7 +67,21 @@ export default {
 				endereco: null,
 				cidade: null,
 				estado: null
-			}
+			},
+			dataFinalizar: [
+				{
+					img: null,
+					nome: 'Nome do Filme',
+					qtd: 1,
+					preco: '9,99'
+				},
+				{
+					img: null,
+					nome: 'Nome do Filme',
+					qtd: 1,
+					preco: '9,99'
+				}
+			]
 		}
 	},
 	methods: {
@@ -86,6 +93,9 @@ export default {
                 this.dataDados[name] = documento.target.value + masc.substring(0,1);
             }
         },
+		deleteDataFinalizar(index) {
+			this.dataFinalizar = this.dataFinalizar.filter((e, i) => i !== index)
+		},
 		finalizar() {
 
 		},

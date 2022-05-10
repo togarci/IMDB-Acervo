@@ -4,17 +4,17 @@
 			<div class="img-card">
 				<i class="fa-solid fa-heart" @click="addFavorite"></i>
 				<img src="" alt="">
-				<p>7 de Janeiro, 2019</p>
+				<p>{{ data.data }}</p>
 			</div>
 			<div class="info-card d-flex flex-column col-md-12 align-items-center mt-3">
-				<b>Nome do Filme</b>
+				<b>{{ data.nomeFilme }}</b>
 				<div class="row mb-2 align-items-center">
 					<i class="fa-solid fa-star"></i>
-					<b>7</b>
+					<b>{{ data.pontos }}</b>
 					&nbsp;
-					<p class="m-0 p-0">Gênero</p>
+					<p class="m-0 p-0">{{ data.genero }}</p>
 				</div>
-				<p class="m-1">R$ 79,99</p>
+				<p class="m-1">{{ `R$ ${data.preco}` }}</p>
 			</div>
 		</div>
 		<button class="btnPrimary col-md-12">
@@ -25,6 +25,13 @@
 
 <script>
 export default {
+	name: 'card-movie',
+	props: {
+		data: {
+			type: Object,
+			default: () => {}
+		}
+	},
 	methods: {
 		addFavorite() {
 
