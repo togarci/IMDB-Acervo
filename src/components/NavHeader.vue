@@ -38,19 +38,31 @@ export default {
 		}
 	},
 	computed: {
-		...mapState('cartDados', ['showSideBar', 'dataItems'])
+		showSideBar: {
+			get() {
+				return this.$store.state.showSideBar;
+			},
+			set(value) {
+				this.$store.commit('setShowSideBar', value);
+			}
+		},
+		dataItems: {
+			get() {
+				return this.$store.state.dataItems;
+			}
+		}
 	},
 	methods: {
 		getSearchMovie() {
 
 		},
 		openCart() {
-			this.$store.commit('cartDados/setShowSideBar', !this.showSideBar);
-			this.$store.commit('cartDados/setTypeSideBar', 'C');
+			this.showSideBar = !this.showSideBar;
+			this.$store.commit('setTypeSideBar', 'C');
 		},
 		openFavorite() {
-			this.$store.commit('cartDados/setShowSideBar', !this.showSideBar);
-			this.$store.commit('cartDados/setTypeSideBar', 'F');
+			this.showSideBar = !this.showSideBar;
+			this.$store.commit('setTypeSideBar', 'F');
 		}
 	}
 }

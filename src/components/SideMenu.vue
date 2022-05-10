@@ -48,19 +48,28 @@ export default {
         }
     },
     computed: {
-        ...mapState('cartDados', ['typeSideBar', 'showSideBar']),
+        typeSideBar: {
+            get() {
+                return this.$store.state.typeSideBar;
+            }
+        },
+        showSideBar: {
+            get() {
+                return this.$store.state.showSideBar;
+            }
+        },
         dataItems: {
             get() {
-                return this.$store.state.cartDados.dataItems;
+                return this.$store.state.dataItems;
             },
             set(value) {
-                this.$store.commit('cartDados/setDataItems', value);
+                this.$store.commit('setDataItems', value);
             }
         }
     },
     methods: {
         finalizarLink() {
-            this.$store.commit('cartDados/setShowSideBar', false);
+            this.$store.commit('setShowSideBar', false);
             this.$router.push({ name: 'Finalizar' });
         },
         deleteItens(index) {
@@ -80,7 +89,7 @@ export default {
             this.calTotalItens();
         },
         closeSideMenu() {
-            this.$store.commit('cartDados/setShowSideBar', false);
+            this.$store.commit('setShowSideBar', false);
         }
     },
     mounted() {
