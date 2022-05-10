@@ -5,17 +5,20 @@
             <router-view/>
             <side-menu/>
         </div>
+        <modal/>
     </div>
 </template>
 
 <script>
 import NavHeader from '@/components/NavHeader.vue';
 import SideMenu from '@/components/SideMenu.vue';
+import Modal from '@/components/Modal.vue';
 
 export default {
     components: {
         NavHeader,
-        SideMenu
+        SideMenu,
+        Modal
     }
 }
 </script>

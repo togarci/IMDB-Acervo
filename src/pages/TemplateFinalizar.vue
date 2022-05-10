@@ -56,6 +56,16 @@ import axios from 'axios';
 
 
 export default {
+	computed: {
+		showModal: {
+			get() {
+				return this.$store.state.showModal;
+			},
+			set(value) {
+				this.$store.commit('setShowModal', value);
+			}
+		}
+	},
 	data() {
 		return {
 			dataDados: {
@@ -97,7 +107,7 @@ export default {
 			this.dataFinalizar = this.dataFinalizar.filter((e, i) => i !== index)
 		},
 		finalizar() {
-
+			this.showModal = true;
 		},
 		clearDataEndereco() {
 			this.dataDados.endereco = null;

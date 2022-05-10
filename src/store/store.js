@@ -7,6 +7,7 @@ export default new Vuex.Store({
 	state: {
 		typeSideBar: null,
 		showSideBar: false,
+		showModal: false,
 		dataItems: [
 			{
 				img: null,
@@ -31,6 +32,9 @@ export default new Vuex.Store({
 		},
 		setDataItems(state, payload) {
 			state.dataItems = payload;
+		},
+		setShowModal(state, payload) {
+			state.showModal = payload;
 		}
 	},
 	actions: {
