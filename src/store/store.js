@@ -19,7 +19,8 @@ export default new Vuex.Store({
 				nomeFilme: 'Nome do Filme',
 				preco: '9.99'
 			}
-		]
+		],
+		listGenres: []
 	},
 	getters: {
 	},
@@ -35,6 +36,9 @@ export default new Vuex.Store({
 		},
 		setShowModal(state, payload) {
 			state.showModal = payload;
+		},
+		setListGenres(state, payload) {
+			state.listGenres = payload;
 		}
 	},
 	actions: {

@@ -11,71 +11,33 @@
 
 <script>
 import CardMovie from '@/components/CardMovie.vue';
+import { movieService } from '@/services/movieService';
+
+const serviceMovie = new movieService();
 export default {
 	components: {
 		CardMovie
 	},
 	data() {
 		return {
-			dataItems: [
-				{
-					data: '7 de Janeiro, 2019',
-					nomeFilme: 'Nome do Filme',
-					pontos: 7,
-					genero: 'Gênero',
-					preco: '79,99'
-				},
-				{
-					data: '7 de Janeiro, 2019',
-					nomeFilme: 'Nome do Filme',
-					pontos: 7,
-					genero: 'Gênero',
-					preco: '79,99'
-				},
-				{
-					data: '7 de Janeiro, 2019',
-					nomeFilme: 'Nome do Filme',
-					pontos: 7,
-					genero: 'Gênero',
-					preco: '79,99'
-				},
-				{
-					data: '7 de Janeiro, 2019',
-					nomeFilme: 'Nome do Filme',
-					pontos: 7,
-					genero: 'Gênero',
-					preco: '79,99'
-				},
-				{
-					data: '7 de Janeiro, 2019',
-					nomeFilme: 'Nome do Filme',
-					pontos: 7,
-					genero: 'Gênero',
-					preco: '79,99'
-				},
-				{
-					data: '7 de Janeiro, 2019',
-					nomeFilme: 'Nome do Filme',
-					pontos: 7,
-					genero: 'Gênero',
-					preco: '79,99'
-				},
-				{
-					data: '7 de Janeiro, 2019',
-					nomeFilme: 'Nome do Filme',
-					pontos: 7,
-					genero: 'Gênero',
-					preco: '79,99'
-				},
-				{
-					data: '7 de Janeiro, 2019',
-					nomeFilme: 'Nome do Filme',
-					pontos: 7,
-					genero: 'Gênero',
-					preco: '79,99'
-				}
-			]
+			dataItems: []
 		}
+	},
+	methods: {
+		async getGenre() {
+            await serviceMovie.getGenre()
+            .then(resp => this.$store.commit('setListGenres', resp.genres))
+            .catch(e => this.$toasted.show('Erro ao carregar dados'))
+        },
+		getMovies() {
+			serviceMovie.getMovies()
+			.then(response => this.dataItems = response.results)
+			.catch(e => this.$toasted.show('Erro ao carregar dados'))
+		}
+	},
+	mounted() {
+		this.getGenre();
+		this.getMovies();
 	}
 }
 </script>

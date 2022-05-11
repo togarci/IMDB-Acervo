@@ -1,5 +1,5 @@
 <template>
-	<header class="d-flex justify-content-between col-md-12 pl-5 pr-5 header">
+	<header class="d-flex justify-content-between pl-5 pr-5 header">
 		<div class="row ml-2 align-items-center">
 			<img src="@/assets/logo.png" @click="$router.push({ path: '/' })">
 		</div>

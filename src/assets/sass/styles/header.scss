@@ -1,6 +1,9 @@
 .header {
+    position: fixed;
+    width: 100%;
     height: 65px;
     background-color: #8dd7cf;
+    z-index: 1;
 
     img {
         object-fit: contain;

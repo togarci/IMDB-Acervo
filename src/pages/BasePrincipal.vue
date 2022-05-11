@@ -19,6 +19,9 @@ export default {
         NavHeader,
         SideMenu,
         Modal
+    },
+    methods: {
+        
     }
 }
 </script>
@@ -26,5 +29,6 @@ export default {
 <style>
 .container-content {
     position: relative;
+    padding-top: 60px;
 }
 </style>
