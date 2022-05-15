@@ -6,21 +6,39 @@
                 <div class="d-flex p-3 justify-content-between mt-3">
                     <h5 v-if="typeSideBar === 'C'">Meu Carrinho</h5>
                     <h5 v-else-if="typeSideBar === 'F'">Meus Favoritos</h5>
-                    <p @click="clearDadosItens" class="esvaziar">Esvaziar</p>
+                    <p v-if="typeSideBar === 'C'" @click="clearDadosItens" class="esvaziar">Esvaziar</p>
                 </div>
 
-                <div v-for="(dado, index) in dataItems" :key="index" class="d-flex mt-3 pl-3 pr-3 align-items-center info">
-                    <div class="d-flex align-items-center col-md-6 p-0 m-0">
-                        <img src="" alt="">
-                        &nbsp;
-                        <p>{{ dado.nomeFilme }}</p>
+                <template v-if="typeSideBar === 'C'">
+                    <div v-for="(dado, index) in listCart" :key="index" class="d-flex mt-3 pl-3 pr-3 align-items-center info">
+                        <div class="d-flex align-items-center col-md-6 p-0 m-0">
+                            <img :src="`https://image.tmdb.org/t/p/w220_and_h330_face/${dado.backdrop_path}`">
+                            &nbsp;
+                            <p class="p-1">{{ `${dado.original_title.substring(0, 15)}` }}</p>
+                            &nbsp;
+                            <p class="p-1">{{ `${dado.qtde}` }}</p>
+                        </div>
+                        <div class="d-flex justify-content-between col-md-6">
+                            <p>{{ `R$ ${(dado.preco * dado.qtde).toFixed(2)}` }}</p>
+                            <i @click="deleteFromListCart(index)" class="fa-solid fa-trash"></i>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between col-md-6">
-                        <p>{{ `R$ ${dado.preco}` }}</p>
-                        <i v-if="typeSideBar === 'F'" class="fa-solid fa-cart-shopping"></i>
-                        <i @click="deleteItens(index)" class="fa-solid fa-trash"></i>
+                </template>
+                <template v-else>
+                    <div v-for="(dado, index) in listFavorites" :key="index" class="d-flex mt-3 pl-3 pr-3 align-items-center info">
+                        <div class="d-flex align-items-center col-md-6 p-0 m-0">
+                            <img :src="`https://image.tmdb.org/t/p/w220_and_h330_face/${dado.backdrop_path}`">
+                            &nbsp;
+                            <p class="p-1">{{ `${dado.original_title.substring(0, 15)}` }}</p>
+                        </div>
+                        <div class="d-flex justify-content-between col-md-6">
+                            <p>{{ `R$ ${dado.preco}` }}</p>
+                            <i @click="addListCart(dado, index)" class="fa-solid fa-cart-shopping"></i>
+                            <i @click="deleteFromListFavorites(index)" class="fa-solid fa-trash"></i>
+                        </div>
                     </div>
-                </div>
+
+                </template>
 
                 <div v-if="typeSideBar === 'C'" class="col-md-3 p-3 end-info">
                     <div class="d-flex mb-3 justify-content-between align-items-center">
@@ -38,15 +56,17 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import generalMixin from '@/mixins/generalMixin';
 
 export default {
     name: 'side-menu',
     data() {
         return {
-            qtdeTotal: '0,00',
         }
     },
+    mixins: [
+        generalMixin
+    ],
     computed: {
         typeSideBar: {
             get() {
@@ -58,12 +78,28 @@ export default {
                 return this.$store.state.showSideBar;
             }
         },
-        dataItems: {
+        listFavorites: {
             get() {
-                return this.$store.state.dataItems;
+                return this.$store.state.listFavorites;
             },
             set(value) {
-                this.$store.commit('setDataItems', value);
+                this.$store.commit('setListFavorites', value);
+            }
+        },
+        listCart: {
+            get() {
+                return this.$store.state.listCart;
+            },
+            set(value) {
+                this.$store.commit('setListCart', value);
+            }
+        },
+        qtdeTotal: {
+            get() {
+                return this.$store.state.qtdeTotal;
+            },
+            set(value) {
+                this.$store.commit('setQtdeTotal', value);
             }
         }
     },
@@ -72,26 +108,36 @@ export default {
             this.$store.commit('setShowSideBar', false);
             this.$router.push({ name: 'Finalizar' });
         },
-        deleteItens(index) {
-            this.dataItems = this.dataItems.filter((e, i) => i !== index);
+        removeFavorite(index) {
+            this.listFavorites = this.listFavorites.filter((e, i) => i !== index);
             this.calTotalItens();
-        },
-        calTotalItens() {
-            let total = 0.00;
-            this.dataItems.forEach(elem => {
-                total += Number(elem.preco);
-            });
-
-            this.qtdeTotal = total;
-        },
+        },        
         clearDadosItens() {
-            this.dataItems = [];
+            this.listCart = [];
             this.calTotalItens();
         },
         closeSideMenu() {
             this.$store.commit('setShowSideBar', false);
+        },
+        deleteFromListFavorites(index) {
+            document.querySelector(`#favorite-icon-${this.listFavorites[index].id}`).style.color = '#FFF';
+            this.listFavorites = this.listFavorites.filter((elem, idx) => idx !== index);
+            this.calTotalItens();
+        },
+        deleteFromListCart(index) {
+            this.listCart = this.listCart.filter((elem, idx) => index !== idx);
+            this.calTotalItens();
+        },
+        addListCart(dado, index) {
+            let checkCardInList = this.listCart.some(elem => elem.id === dado.id);
+			if (!checkCardInList) {
+                dado.qtde = 1;
+				this.listCart.push(dado);
+			}
+            this.deleteFromListFavorites(index);
+			this.calTotalItens();
         }
-    },
+    }, 
     mounted() {
         this.calTotalItens();
     }

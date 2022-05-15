@@ -21,15 +21,13 @@
 			</div>
 			<div class="cart d-flex h-100 align-items-center col-md-5">
 				<i class="fa-solid fa-cart-shopping" @click="openCart"></i>
-				<div class="qtd-cart row align-items-center justify-content-center">{{ dataItems.length }}</div>
+				<div class="qtd-cart row align-items-center justify-content-center">{{ listCart.length }}</div>
 			</div>
 		</div>
 	</header>
 </template>
 
 <script>
-import { mapState } from 'vuex';
-
 export default {
 	name: 'nav-header',
 	data() {
@@ -46,9 +44,14 @@ export default {
 				this.$store.commit('setShowSideBar', value);
 			}
 		},
-		dataItems: {
+		listFavorites: {
 			get() {
-				return this.$store.state.dataItems;
+				return this.$store.state.listFavorites;
+			}
+		},
+		listCart: {
+			get() {
+				return this.$store.state.listCart;
 			}
 		}
 	},

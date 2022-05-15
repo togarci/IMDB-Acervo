@@ -8,19 +8,10 @@ export default new Vuex.Store({
 		typeSideBar: null,
 		showSideBar: false,
 		showModal: false,
-		dataItems: [
-			{
-				img: null,
-				nomeFilme: 'Nome do Filme',
-				preco: '9.99'
-			},
-			{
-				img: null,
-				nomeFilme: 'Nome do Filme',
-				preco: '9.99'
-			}
-		],
-		listGenres: []
+		listFavorites: [],
+		listCart: [],
+		listGenres: [],
+		qtdeTotal: 0.00
 	},
 	getters: {
 	},
@@ -31,14 +22,20 @@ export default new Vuex.Store({
 		setShowSideBar(state, payload) {
 			state.showSideBar = payload;
 		},
-		setDataItems(state, payload) {
-			state.dataItems = payload;
-		},
 		setShowModal(state, payload) {
 			state.showModal = payload;
 		},
 		setListGenres(state, payload) {
 			state.listGenres = payload;
+		},
+		setListFavorites(state, payload) {
+			state.listFavorites = payload;
+		},
+		setListCart(state, payload) {
+			state.listCart = payload;
+		},
+		setQtdeTotal(state, payload) {
+			state.qtdeTotal = payload;
 		}
 	},
 	actions: {

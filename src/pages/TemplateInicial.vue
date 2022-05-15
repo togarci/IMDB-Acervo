@@ -31,7 +31,10 @@ export default {
         },
 		getMovies() {
 			serviceMovie.getMovies()
-			.then(response => this.dataItems = response.results)
+			.then(response => {
+				response.results.forEach(elem => elem.preco = (Math.random() * (100 - 10) + 10).toFixed(2))
+				this.dataItems = response.results;
+			})
 			.catch(e => this.$toasted.show('Erro ao carregar dados'))
 		}
 	},
