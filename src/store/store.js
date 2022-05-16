@@ -11,7 +11,17 @@ export default new Vuex.Store({
 		listFavorites: [],
 		listCart: [],
 		listGenres: [],
-		qtdeTotal: 0.00
+		qtdeTotal: 0.00,
+		dataDados: {
+			nome: null,
+			cpf: null,
+			celular: null,
+			email: null,
+			cep: null,
+			endereco: null,
+			cidade: null,
+			estado: null
+		}
 	},
 	getters: {
 	},
@@ -36,6 +46,14 @@ export default new Vuex.Store({
 		},
 		setQtdeTotal(state, payload) {
 			state.qtdeTotal = payload;
+		},
+		setDataDados(state, payload) {
+			state.dataDados[payload.key] = payload.value;
+		},
+		resetDataDados(state, payload) {
+			for (var key in state.dataDados) {
+				state.dataDados[key] = null;
+			}
 		}
 	},
 	actions: {

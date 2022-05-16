@@ -28,7 +28,7 @@ export default {
                 total += ((Number(elem.preco) * Number(elem.qtde)));
             });
 
-            this.qtdeTotal = total;
+            this.qtdeTotal = total.toFixed(2);
         },
     }
 }
