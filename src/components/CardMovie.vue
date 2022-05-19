@@ -3,7 +3,10 @@
 		<div class="border-card">
 			<div class="img-card">
 				<i :id="`favorite-icon-${data.id}`" class="fa-solid fa-heart" @click="addFavorite($event)"></i>
-				<img :src="`https://image.tmdb.org/t/p/w220_and_h330_face/${data.backdrop_path}`" alt="">
+				<img v-if="data.backdrop_path" :src="`https://image.tmdb.org/t/p/w220_and_h330_face/${data.backdrop_path}`">
+				<div v-else class="d-flex h-100 col-md-12 align-items-center justify-content-center ">
+					<i class="fas fa-image"></i>
+				</div>
 				<p>{{ convertData(data.release_date) }}</p>
 			</div>
 			<div class="info-card d-flex flex-column col-md-12 align-items-center mt-3">
@@ -114,8 +117,11 @@ export default {
 		},
 		setGenre(idGenre) {
 			let genre = this.listGenres.find(elem => elem.id === idGenre);
-			genre = genre.name;
-			return genre;
+			let result = null;
+			if (genre) {
+				result = genre.name;
+			}
+			return result;
 		}
 	}
 }

@@ -28,6 +28,9 @@
 </template>
 
 <script>
+import { movieService } from '@/services/movieService';
+
+const serviceMovie = new movieService();
 export default {
 	name: 'nav-header',
 	data() {
@@ -53,12 +56,17 @@ export default {
 			get() {
 				return this.$store.state.listCart;
 			}
-		}
-	},
-	methods: {
-		getSearchMovie() {
-
 		},
+		dataItems: {
+			get() {
+				return this.$store.state.dataItems;
+			},
+			set(value) {
+				this.$store.commit('setDataItems', value);
+			}
+		}
+	},	
+	methods: {
 		openCart() {
 			this.showSideBar = !this.showSideBar;
 			this.$store.commit('setTypeSideBar', 'C');
@@ -66,6 +74,15 @@ export default {
 		openFavorite() {
 			this.showSideBar = !this.showSideBar;
 			this.$store.commit('setTypeSideBar', 'F');
+		},
+		getSearchMovie() {
+			if (this.searchValue) {
+				serviceMovie.getSearchMovie(this.searchValue).then(resp => {
+					resp.results.forEach(elem => elem.preco = (Math.random() * (100 - 10) + 10).toFixed(2));
+					this.dataItems = resp.results;
+					this.searchValue = null;
+				}).catch(e => this.$toasted.show('Erro na busca'));
+			}
 		}
 	}
 }

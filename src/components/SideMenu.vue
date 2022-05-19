@@ -11,14 +11,14 @@
 
                 <template v-if="typeSideBar === 'C'">
                     <div v-for="(dado, index) in listCart" :key="index" class="d-flex mt-3 pl-3 pr-3 align-items-center info">
-                        <div class="d-flex align-items-center col-md-6 p-0 m-0">
+                        <div class="d-flex align-items-center col-md-7 p-0 m-0">
                             <img :src="`https://image.tmdb.org/t/p/w220_and_h330_face/${dado.backdrop_path}`">
                             &nbsp;
-                            <p class="p-1">{{ `${dado.original_title.substring(0, 15)}` }}</p>
+                            <p class="col-md-8 p-1">{{ `${dado.original_title.substring(0, 15)}` }}</p>
                             &nbsp;
                             <p class="p-1">{{ `${dado.qtde}` }}</p>
                         </div>
-                        <div class="d-flex justify-content-between col-md-6">
+                        <div class="d-flex justify-content-between col-md-5">
                             <p>{{ `R$ ${(dado.preco * dado.qtde).toFixed(2)}` }}</p>
                             <i @click="deleteFromListCart(index)" class="fa-solid fa-trash"></i>
                         </div>

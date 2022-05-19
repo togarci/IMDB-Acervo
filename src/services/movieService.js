@@ -22,4 +22,17 @@ export class movieService {
             }
         }).then(response => response.data)
     }
+
+    getSearchMovie(query) {
+        let url = `https://api.themoviedb.org/3/search/movie`;
+        return axios.get(url, {
+            params: {
+                api_key: `${process.env.VUE_APP_API_KEY}`,
+                language:'pt',
+                page: 1,
+                include_adult: false,
+                query: query
+            }
+        }).then(response => response.data)
+    }
 }

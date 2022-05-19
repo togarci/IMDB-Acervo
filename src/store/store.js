@@ -21,7 +21,8 @@ export default new Vuex.Store({
 			endereco: null,
 			cidade: null,
 			estado: null
-		}
+		},
+		dataItems: []
 	},
 	getters: {
 	},
@@ -54,6 +55,9 @@ export default new Vuex.Store({
 			for (var key in state.dataDados) {
 				state.dataDados[key] = null;
 			}
+		},
+		setDataItems(state, payload) {
+			state.dataItems = payload;
 		}
 	},
 	actions: {

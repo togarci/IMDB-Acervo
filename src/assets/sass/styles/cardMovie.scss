@@ -10,17 +10,22 @@
         font-weight: bolder;
         color: #FFF;
 
-        i {
+        .fa-heart {
             position: absolute;
             top: 20px;
             right: 20px;
             font-size: 30px;
             cursor: pointer;
+            z-index: 1;
         }
         img {
             object-fit: fill;
             height: 100%;
             width: 100%;
+        }
+        .fa-image {
+            color: #4b5c6b;
+            font-size: 50px;
         }
         p {
             position: absolute;
