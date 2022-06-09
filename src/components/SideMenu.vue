@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="showSideBar" class="side-menu d-flex">
+        <div class="side-menu d-flex">
             <div class="side" @click="closeSideMenu"></div>
             <div class="menu">
                 <div class="d-flex p-3 justify-content-between mt-3">
@@ -40,7 +40,7 @@
 
                 </template>
 
-                <div v-if="typeSideBar === 'C'" class="col-md-3 p-3 end-info">
+                <div v-if="typeSideBar === 'C' && checkArrayLength(listCart)" class="col-md-3 p-3 end-info">
                     <div class="d-flex mb-3 justify-content-between align-items-center">
                         <h5>Total:</h5>
                         <h4>{{ `R$ ${qtdeTotal}` }}</h4>
@@ -136,10 +136,33 @@ export default {
 			}
             this.deleteFromListFavorites(index);
 			this.calTotalItens();
+        },
+        checkArrayLength(array) {
+            if (array) {
+                if (array.length > 0) {
+                    return true;
+
+                } else {
+                    return false;
+                }
+            }
+            return false;
         }
     }, 
     mounted() {
         this.calTotalItens();
+    },
+    watch: {
+        showSideBar(newValue) {
+            let menuDocument = document.querySelector('.side-menu');
+            if (newValue) {
+                menuDocument.style.zIndex = '2'
+                menuDocument.style.right = '0px';
+            } else {
+                menuDocument.style.zIndex = '-1'
+                menuDocument.style.right = '-350px';
+            }
+        }
     }
 }
 </script>

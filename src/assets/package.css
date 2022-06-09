@@ -34,6 +34,11 @@ input::placeholder {
 	cursor: pointer;
 }
 
+.btnPrimary:hover {
+	background-color: #4a3fc2;
+	transition-duration: 0.6s;
+}
+
 .tooltip-container {
 	position: relative;
 	display: inline-block;

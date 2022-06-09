@@ -18,6 +18,10 @@
             cursor: pointer;
             z-index: 1;
         }
+        .fa-heart:hover {
+            color: #ebbcc0;
+            transition-duration: 1.6s;
+        }
         img {
             object-fit: fill;
             height: 100%;

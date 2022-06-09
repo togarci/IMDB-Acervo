@@ -91,7 +91,7 @@ export default {
 				event.target.style.color = "#FFF";
 				this.listFavorites = this.listFavorites.filter(elem => elem.id !== this.data.id);
 			} else {
-				event.target.style.color = "#4b5c6b";
+				event.target.style.color = "#DC3545";
 				this.listFavorites.push(this.data);
 			}
 			this.calTotalItens();
